@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { RegisterModule } from './register/register.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
+import { PatientInfoModule } from './patient-info/patient-info.module';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal:true
    }),
     MongooseModule.forRoot(process.env.DB_URI),
-    RegisterModule
+    RegisterModule,
+    PatientInfoModule
   ],
   controllers: [AppController],
   providers: [AppService],
