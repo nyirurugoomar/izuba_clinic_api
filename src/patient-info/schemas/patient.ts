@@ -15,7 +15,7 @@ export class Patient{
 
 
     @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: () => Register }] })
-  register: mongoose.Types.ObjectId[];
+    register: mongoose.Types.ObjectId[];
 
     @Prop()
     fullnam:string

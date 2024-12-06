@@ -11,6 +11,9 @@ export class PatientInfoController {
         @Query('register') register: string,
         @Body() dto:PatientDto){
         const data = { ...dto, register: [register] };
-        return this.patientService.patientInfo(data)
+        return this.patientService.patientInfo(dto)
     }
+    
 }
+    
+

@@ -13,7 +13,7 @@ export class RegisterService {
 
         async registerUser(dto: RegisterDto): Promise<{ message: string; register: Register }> {
             try {
-              // Create the new register entry
+              
               const newRegister = await this.registerModel.create(dto);
               return {
                 message: 'User registered successfully!',
