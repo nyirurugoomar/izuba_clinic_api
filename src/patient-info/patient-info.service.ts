@@ -11,16 +11,22 @@ export class PatientInfoService {
         private patientModel: mongoose.Model<Patient>
     ){}
 
-    async patientInfo(dto:PatientDto):Promise<{message:string; patient:Patient}>{
+    async patientInfo(dto: PatientDto): Promise<{ message: string; patient: Patient }> {
         try {
-           
-            const newPatient = await this.patientModel.create(dto);
-            return {
-                message: 'Patient information saved successfully!',
-                patient: newPatient,
-            };
+          const newPatient = await this.patientModel.create(dto);
+      
+          // Populate the `register` field
+          const populatedPatient = await this.patientModel
+            .findById(newPatient._id)
+            .populate('register')
+            .exec();
+      
+          return {
+            message: 'Patient information saved successfully!',
+            patient: populatedPatient,
+          };
         } catch (error) {
-            throw new Error(`Failed to save patient information: ${error.message}`);
+          throw new Error(`Failed to save patient information: ${error.message}`);
         }
-    }
+      }
 }

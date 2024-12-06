@@ -1,4 +1,5 @@
 export declare class PatientDto {
+    register: string[];
     fullname: string;
     email: string;
     number: number;

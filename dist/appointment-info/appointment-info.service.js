@@ -12,36 +12,36 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PatientInfoService = void 0;
+exports.AppointmentInfoService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const patient_1 = require("./schemas/patient");
-let PatientInfoService = class PatientInfoService {
-    constructor(patientModel) {
-        this.patientModel = patientModel;
+const appointment_1 = require("./schemas/appointment");
+let AppointmentInfoService = class AppointmentInfoService {
+    constructor(appointmentModel) {
+        this.appointmentModel = appointmentModel;
     }
-    async patientInfo(dto) {
+    async appointmentInfo(dto) {
         try {
-            const newPatient = await this.patientModel.create(dto);
-            const populatedPatient = await this.patientModel
-                .findById(newPatient._id)
+            const newAppointment = await this.appointmentModel.create(dto);
+            const populatedAppointment = await this.appointmentModel
+                .findById(newAppointment._id)
                 .populate('register')
                 .exec();
             return {
-                message: 'Patient information saved successfully!',
-                patient: populatedPatient,
+                message: 'Appointment information saved successfully!',
+                appontment: populatedAppointment,
             };
         }
         catch (error) {
-            throw new Error(`Failed to save patient information: ${error.message}`);
+            throw new Error(`Failed to save appointment information: ${error.message}`);
         }
     }
 };
-exports.PatientInfoService = PatientInfoService;
-exports.PatientInfoService = PatientInfoService = __decorate([
+exports.AppointmentInfoService = AppointmentInfoService;
+exports.AppointmentInfoService = AppointmentInfoService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(patient_1.Patient.name)),
+    __param(0, (0, mongoose_1.InjectModel)(appointment_1.Appointment.name)),
     __metadata("design:paramtypes", [mongoose_2.default.Model])
-], PatientInfoService);
-//# sourceMappingURL=patient-info.service.js.map
+], AppointmentInfoService);
+//# sourceMappingURL=appointment-info.service.js.map

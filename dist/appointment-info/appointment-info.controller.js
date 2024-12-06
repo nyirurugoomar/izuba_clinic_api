@@ -12,30 +12,30 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PatientInfoController = void 0;
+exports.AppointmentInfoController = void 0;
 const common_1 = require("@nestjs/common");
-const patient_info_service_1 = require("./patient-info.service");
-const patient_dto_1 = require("./dto/patient.dto");
-let PatientInfoController = class PatientInfoController {
-    constructor(patientService) {
-        this.patientService = patientService;
+const appointment_info_service_1 = require("./appointment-info.service");
+const appointment_dto_1 = require("./dto/appointment.dto");
+let AppointmentInfoController = class AppointmentInfoController {
+    constructor(appointmentService) {
+        this.appointmentService = appointmentService;
     }
-    async patient(register, dto) {
+    async appointment(register, dto) {
         const data = { ...dto, register: [register] };
-        return this.patientService.patientInfo(data);
+        return this.appointmentService.appointmentInfo(data);
     }
 };
-exports.PatientInfoController = PatientInfoController;
+exports.AppointmentInfoController = AppointmentInfoController;
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Query)('register')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, patient_dto_1.PatientDto]),
+    __metadata("design:paramtypes", [String, appointment_dto_1.AppointmentDto]),
     __metadata("design:returntype", Promise)
-], PatientInfoController.prototype, "patient", null);
-exports.PatientInfoController = PatientInfoController = __decorate([
-    (0, common_1.Controller)('patient-info'),
-    __metadata("design:paramtypes", [patient_info_service_1.PatientInfoService])
-], PatientInfoController);
-//# sourceMappingURL=patient-info.controller.js.map
+], AppointmentInfoController.prototype, "appointment", null);
+exports.AppointmentInfoController = AppointmentInfoController = __decorate([
+    (0, common_1.Controller)('appointment-info'),
+    __metadata("design:paramtypes", [appointment_info_service_1.AppointmentInfoService])
+], AppointmentInfoController);
+//# sourceMappingURL=appointment-info.controller.js.map

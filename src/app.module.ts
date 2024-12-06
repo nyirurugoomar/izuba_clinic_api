@@ -5,6 +5,7 @@ import { RegisterModule } from './register/register.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { PatientInfoModule } from './patient-info/patient-info.module';
+import { AppointmentInfoModule } from './appointment-info/appointment-info.module';
 
 @Module({
   imports: [
@@ -14,7 +15,9 @@ import { PatientInfoModule } from './patient-info/patient-info.module';
    }),
     MongooseModule.forRoot(process.env.DB_URI),
     RegisterModule,
-    PatientInfoModule
+    PatientInfoModule,
+    AppointmentInfoModule,
+    
   ],
   controllers: [AppController],
   providers: [AppService],

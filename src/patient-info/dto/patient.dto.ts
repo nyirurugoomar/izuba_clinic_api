@@ -1,6 +1,11 @@
 import { IsString, IsEmail, IsPhoneNumber, IsEmpty, IsNumber } from 'class-validator';
 
 export class PatientDto {
+
+
+  register: string[];
+
+  
   @IsEmpty()
   @IsString()
   fullname: string;
@@ -53,6 +58,7 @@ export class PatientDto {
   insurancePolicyNumber: number;
 
 
+  
   @IsEmpty()
   @IsString()
   allergies: string;

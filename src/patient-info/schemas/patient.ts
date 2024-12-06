@@ -1,4 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import mongoose from "mongoose";
+import { Register } from "../../register/schemas/register.schema";
 
 
 
@@ -10,6 +12,11 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 
 export class Patient{
+
+
+    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: () => Register }] })
+  register: mongoose.Types.ObjectId[];
+
     @Prop()
     fullnam:string
 
