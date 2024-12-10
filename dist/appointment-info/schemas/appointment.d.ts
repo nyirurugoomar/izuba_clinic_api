@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 export declare class Appointment {
     register: mongoose.Types.ObjectId[];
-    doctor: string;
+    doctors: string;
     reasonAppointment: string;
     additionComment?: string;
     date: Date;

@@ -14,8 +14,9 @@ export class Appointment{
 
     @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: () => Register }] })
      register: mongoose.Types.ObjectId[];
+
     @Prop()
-    doctor:string
+    doctors:string
 
     @Prop()
     reasonAppointment:string

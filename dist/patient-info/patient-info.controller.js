@@ -16,22 +16,32 @@ exports.PatientInfoController = void 0;
 const common_1 = require("@nestjs/common");
 const patient_info_service_1 = require("./patient-info.service");
 const patient_dto_1 = require("./dto/patient.dto");
+const swagger_1 = require("@nestjs/swagger");
 let PatientInfoController = class PatientInfoController {
     constructor(patientService) {
         this.patientService = patientService;
     }
-    async patient(register, dto) {
-        const data = { ...dto, register: [register] };
-        return this.patientService.patientInfo(dto);
+    async patient(register, dto, extraData) {
+        const data = { ...dto, register: [register], extraData };
+        return this.patientService.patientInfo(data);
     }
 };
 exports.PatientInfoController = PatientInfoController;
 __decorate([
     (0, common_1.Post)(),
+    (0, swagger_1.ApiOperation)({ summary: 'Patient' }),
+    (0, swagger_1.ApiResponse)({
+        status: 201,
+        description: 'Patient info created successfully',
+        type: patient_dto_1.PatientDto,
+        isArray: true
+    }),
+    (0, swagger_1.ApiNotFoundResponse)({ description: 'Fail to create patient info' }),
     __param(0, (0, common_1.Query)('register')),
     __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Body)('extraData')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, patient_dto_1.PatientDto]),
+    __metadata("design:paramtypes", [String, patient_dto_1.PatientDto, Object]),
     __metadata("design:returntype", Promise)
 ], PatientInfoController.prototype, "patient", null);
 exports.PatientInfoController = PatientInfoController = __decorate([

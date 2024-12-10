@@ -16,6 +16,7 @@ exports.RegisterController = void 0;
 const common_1 = require("@nestjs/common");
 const register_service_1 = require("./register.service");
 const register_dto_1 = require("./dto/register.dto");
+const swagger_1 = require("@nestjs/swagger");
 let RegisterController = class RegisterController {
     constructor(registerService) {
         this.registerService = registerService;
@@ -27,6 +28,14 @@ let RegisterController = class RegisterController {
 exports.RegisterController = RegisterController;
 __decorate([
     (0, common_1.Post)(),
+    (0, swagger_1.ApiOperation)({ summary: 'Register' }),
+    (0, swagger_1.ApiResponse)({
+        status: 201,
+        description: 'Registered successfully',
+        type: register_dto_1.RegisterDto,
+        isArray: true
+    }),
+    (0, swagger_1.ApiNotFoundResponse)({ description: 'Fail to register' }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [register_dto_1.RegisterDto]),

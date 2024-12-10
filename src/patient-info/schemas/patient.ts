@@ -1,76 +1,67 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import mongoose from "mongoose";
-import { Register } from "../../register/schemas/register.schema";
-
-
-
-
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
+import { Register } from '../../register/schemas/register.schema';
 
 @Schema({
-    timestamps: true,
+  timestamps: true, // Automatically adds createdAt and updatedAt timestamps
 })
-
-
-export class Patient{
-
-
+export class Patient {
     @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: () => Register }] })
     register: mongoose.Types.ObjectId[];
-
-    @Prop()
-    fullnam:string
-
-    @Prop()
-    email:string
-
-    @Prop()
-    number:number
-
-    @Prop()
-    dob:string
     
+  @Prop()
+  fullName: string; // Improved camelCase consistency
 
-    @Prop()
-    gender:string
-   
-    @Prop()
-    address:string
+  @Prop()
+  email: string;
 
-    @Prop()
-    occupation:string
+  @Prop()
+  phoneNumber: string; // Changed to string to handle phone numbers with formatting
 
-    @Prop()
-    emergencyContactName:string
+  @Prop()
+  dob: string;
 
-    @Prop()
-    emergencyPhoneNumber:number
+  @Prop()
+  gender: string;
 
-    @Prop()
-    doctor:string
+  @Prop()
+  address: string;
 
-    @Prop()
-    insuranceProvider:string
+  @Prop()
+  occupation: string;
 
-    @Prop()
-    insurancePolicyNumber:number
+  @Prop()
+  emergencyContactName: string;
 
-    @Prop()
-    allergies:string
+  @Prop()
+  emergencyPhoneNumber: string; // Changed to string for consistency with phone numbers
 
-    @Prop()
-    currentMedications:string
+  @Prop()
+  doctor: string;
 
-    @Prop()
-    medicalHistory:string
+  @Prop()
+  insuranceProvider: string;
 
-    @Prop()
-    pastMedical:string
+  @Prop()
+  insurancePolicyNumber: number;
 
-    @Prop()
-    birthCertificate:string
+  @Prop()
+  allergies: string;
 
-    @Prop()
-    identificationNumber:number
+  @Prop()
+  currentMedications: string;
+
+  @Prop()
+  medicalHistory: string;
+
+  @Prop()
+  pastMedical: string;
+
+  @Prop()
+  birthCertificate: string;
+
+  @Prop()
+  identificationNumber: number;
 }
 
-export const PatientSchema = SchemaFactory.createForClass(Patient)
+export const PatientSchema = SchemaFactory.createForClass(Patient);

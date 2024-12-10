@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RegisterDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class RegisterDto {
 }
@@ -17,16 +18,28 @@ exports.RegisterDto = RegisterDto;
 __decorate([
     (0, class_validator_1.IsEmpty)(),
     (0, class_validator_1.IsString)(),
+    (0, swagger_1.ApiProperty)({
+        description: 'Full name',
+        example: 'John Smith'
+    }),
     __metadata("design:type", String)
 ], RegisterDto.prototype, "fullname", void 0);
 __decorate([
     (0, class_validator_1.IsEmpty)(),
     (0, class_validator_1.IsEmail)(),
+    (0, swagger_1.ApiProperty)({
+        description: 'Email address',
+        example: 'john.smith@example.com'
+    }),
     __metadata("design:type", String)
 ], RegisterDto.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.IsEmpty)(),
     (0, class_validator_1.IsPhoneNumber)(),
+    (0, swagger_1.ApiProperty)({
+        description: 'Phone number',
+        example: '+1 123-456-7890'
+    }),
     __metadata("design:type", Number)
 ], RegisterDto.prototype, "phone", void 0);
 //# sourceMappingURL=register.dto.js.map

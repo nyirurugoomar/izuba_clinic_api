@@ -1,15 +1,15 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 export declare class Patient {
     register: mongoose.Types.ObjectId[];
-    fullnam: string;
+    fullName: string;
     email: string;
-    number: number;
+    phoneNumber: string;
     dob: string;
     gender: string;
     address: string;
     occupation: string;
     emergencyContactName: string;
-    emergencyPhoneNumber: number;
+    emergencyPhoneNumber: string;
     doctor: string;
     insuranceProvider: string;
     insurancePolicyNumber: number;

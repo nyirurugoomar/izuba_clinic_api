@@ -1,5 +1,6 @@
 export declare class AppointmentDto {
-    doctor: string;
+    register: string[];
+    doctors: string;
     reasonAppointment: string;
     additionComment: string;
     Date: Date;

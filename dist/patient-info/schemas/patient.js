@@ -23,15 +23,15 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Patient.prototype, "fullnam", void 0);
+], Patient.prototype, "fullName", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Patient.prototype, "email", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
-    __metadata("design:type", Number)
-], Patient.prototype, "number", void 0);
+    __metadata("design:type", String)
+], Patient.prototype, "phoneNumber", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
@@ -54,7 +54,7 @@ __decorate([
 ], Patient.prototype, "emergencyContactName", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Patient.prototype, "emergencyPhoneNumber", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
