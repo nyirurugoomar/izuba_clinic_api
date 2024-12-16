@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose, { Types } from "mongoose";
 export declare class Patient {
-    register: mongoose.Types.ObjectId[];
+    register: Types.ObjectId[];
     fullName: string;
     email: string;
     phoneNumber: string;
@@ -21,11 +21,11 @@ export declare class Patient {
     identificationNumber: number;
 }
 export declare const PatientSchema: mongoose.Schema<Patient, mongoose.Model<Patient, any, any, any, mongoose.Document<unknown, any, Patient> & Patient & {
-    _id: mongoose.Types.ObjectId;
+    _id: Types.ObjectId;
 } & {
     __v: number;
 }, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Patient, mongoose.Document<unknown, {}, mongoose.FlatRecord<Patient>> & mongoose.FlatRecord<Patient> & {
-    _id: mongoose.Types.ObjectId;
+    _id: Types.ObjectId;
 } & {
     __v: number;
 }>;

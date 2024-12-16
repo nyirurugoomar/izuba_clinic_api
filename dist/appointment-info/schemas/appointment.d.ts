@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 export declare class Appointment {
-    register: mongoose.Types.ObjectId[];
     doctors: string;
     reasonAppointment: string;
     additionComment?: string;
     date: Date;
+    register: mongoose.Types.ObjectId;
 }
 export declare const AppointmentSchema: mongoose.Schema<Appointment, mongoose.Model<Appointment, any, any, any, mongoose.Document<unknown, any, Appointment> & Appointment & {
     _id: mongoose.Types.ObjectId;

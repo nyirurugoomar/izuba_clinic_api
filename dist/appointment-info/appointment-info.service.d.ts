@@ -6,6 +6,6 @@ export declare class AppointmentInfoService {
     constructor(appointmentModel: mongoose.Model<Appointment>);
     appointmentInfo(dto: AppointmentDto): Promise<{
         message: string;
-        appontment: Appointment;
+        appointment: Appointment;
     }>;
 }

@@ -1,31 +1,33 @@
-import { Body, Controller, Post, Query } from '@nestjs/common';
+import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
 import { PatientInfoService } from './patient-info.service';
 import { PatientDto } from './dto/patient.dto';
+// import { JwtAuthGuard } from '../register/guard/jwt-auth.guard'; // Correct path to your guard
+import { JwtAuthGuard } from '../register/guards/jwt-auth.guard';
 import { ApiNotFoundResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 @Controller('patient-info')
 export class PatientInfoController {
-    constructor(private readonly patientService: PatientInfoService){}
+  constructor(private readonly patientService: PatientInfoService) {}
 
-    @Post()
-    @ApiOperation({summary:'Patient'})
-    @ApiResponse({
-        status: 201,
-        description: 'Patient info created successfully',
-        type:PatientDto,
-        isArray:true
-  
-    })
-    @ApiNotFoundResponse({description:'Fail to create patient info'})
-    async patient(
-        @Query('register') register: string,
-        @Body() dto: PatientDto,
-        @Body('extraData') extraData: any, // Parse additional JSON fields from the body
-    ) {
-        // Combine all data into a single object
-        const data = { ...dto, register: [register], extraData };
-        return this.patientService.patientInfo(data); // Pass the combined data to the service
+  @UseGuards(JwtAuthGuard) // Attach the guard to secure the route
+  @Post()
+  @ApiOperation({ summary: 'Add Patient Info' })
+  @ApiResponse({
+    status: 201,
+    description: 'Patient info created successfully',
+    type: PatientDto,
+  })
+  @ApiNotFoundResponse({ description: 'Failed to create patient info' })
+  async patient(@Request() req: any, @Body() dto: PatientDto) {
+    console.log('User from request:', req.user); // Log the user object to ensure it is populated correctly
+    const registerId = req.user?.id
+    const registerEmail = req.user?.email
+    const registerFullname = req.user?.fullname
+    if (!registerId) {
+      throw new Error('Register ID not found'); // Ensure `req.user.id` exists
     }
-    
+  
+    const data = { ...dto, register: [registerId,registerEmail,registerFullname] }; // Attach `registerId`
+    return this.patientService.patientInfo(data);
+  }
 }
-    

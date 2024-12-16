@@ -17,16 +17,20 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const register_schema_1 = require("./schemas/register.schema");
 const mongoose = require("mongoose");
+const jwt_1 = require("@nestjs/jwt");
 let RegisterService = class RegisterService {
-    constructor(registerModel) {
+    constructor(registerModel, jwtService) {
         this.registerModel = registerModel;
+        this.jwtService = jwtService;
     }
     async registerUser(dto) {
         try {
             const newRegister = await this.registerModel.create(dto);
+            const tokenPayload = { email: newRegister.email, id: newRegister._id, fullname: newRegister.fullname };
+            const token = this.jwtService.sign(tokenPayload);
             return {
                 message: 'User registered successfully!',
-                register: newRegister,
+                token,
             };
         }
         catch (error) {
@@ -38,6 +42,6 @@ exports.RegisterService = RegisterService;
 exports.RegisterService = RegisterService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(register_schema_1.Register.name)),
-    __metadata("design:paramtypes", [mongoose.Model])
+    __metadata("design:paramtypes", [mongoose.Model, jwt_1.JwtService])
 ], RegisterService);
 //# sourceMappingURL=register.service.js.map

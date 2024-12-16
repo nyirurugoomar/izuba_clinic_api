@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
+import { Model } from 'mongoose';
 import { Patient } from './schemas/patient';
 import { PatientDto } from './dto/patient.dto';
 export declare class PatientInfoService {
     private patientModel;
-    constructor(patientModel: mongoose.Model<Patient>);
+    constructor(patientModel: Model<Patient>);
     patientInfo(dto: PatientDto): Promise<{
         message: string;
         patient: Patient;

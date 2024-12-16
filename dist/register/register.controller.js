@@ -33,7 +33,7 @@ __decorate([
         status: 201,
         description: 'Registered successfully',
         type: register_dto_1.RegisterDto,
-        isArray: true
+        isArray: true,
     }),
     (0, swagger_1.ApiNotFoundResponse)({ description: 'Fail to register' }),
     __param(0, (0, common_1.Body)()),

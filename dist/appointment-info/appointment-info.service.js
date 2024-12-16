@@ -26,11 +26,11 @@ let AppointmentInfoService = class AppointmentInfoService {
             const newAppointment = await this.appointmentModel.create(dto);
             const populatedAppointment = await this.appointmentModel
                 .findById(newAppointment._id)
-                .populate('register')
+                .populate('register', 'email fullname')
                 .exec();
             return {
                 message: 'Appointment information saved successfully!',
-                appontment: populatedAppointment,
+                appointment: populatedAppointment,
             };
         }
         catch (error) {

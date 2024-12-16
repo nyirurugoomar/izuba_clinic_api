@@ -12,14 +12,30 @@ const register_service_1 = require("./register.service");
 const register_controller_1 = require("./register.controller");
 const mongoose_1 = require("@nestjs/mongoose");
 const register_schema_1 = require("./schemas/register.schema");
+const jwt_1 = require("@nestjs/jwt");
+const config_1 = require("@nestjs/config");
+const jwt_strategy_1 = require("./strategies/jwt.strategy");
+const passport_1 = require("@nestjs/passport");
 let RegisterModule = class RegisterModule {
 };
 exports.RegisterModule = RegisterModule;
 exports.RegisterModule = RegisterModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'Register', schema: register_schema_1.RegisterSchema }])],
-        providers: [register_service_1.RegisterService],
-        controllers: [register_controller_1.RegisterController]
+        imports: [
+            mongoose_1.MongooseModule.forFeature([{ name: 'Register', schema: register_schema_1.RegisterSchema }]),
+            config_1.ConfigModule.forRoot(),
+            jwt_1.JwtModule.registerAsync({
+                imports: [config_1.ConfigModule],
+                inject: [config_1.ConfigService],
+                useFactory: async (configService) => ({
+                    secret: configService.get('JWT_SECRET'),
+                    signOptions: { expiresIn: configService.get('JWT_EXPIRES_IN') },
+                }),
+            }),
+            passport_1.PassportModule
+        ],
+        providers: [register_service_1.RegisterService, jwt_strategy_1.JwtStrategy],
+        controllers: [register_controller_1.RegisterController],
     })
 ], RegisterModule);
 //# sourceMappingURL=register.module.js.map

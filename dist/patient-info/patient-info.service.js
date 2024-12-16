@@ -26,7 +26,7 @@ let PatientInfoService = class PatientInfoService {
             const newPatient = await this.patientModel.create(dto);
             const populatedPatient = await this.patientModel
                 .findById(newPatient._id)
-                .populate('register')
+                .populate('register', 'email fullname')
                 .exec();
             return {
                 message: 'Patient information saved successfully!',
@@ -34,7 +34,7 @@ let PatientInfoService = class PatientInfoService {
             };
         }
         catch (error) {
-            throw new Error(`Failed to save patient information: ${error.message}`);
+            throw new Error(`Failed to save patient info: ${error.message}`);
         }
     }
 };
@@ -42,6 +42,6 @@ exports.PatientInfoService = PatientInfoService;
 exports.PatientInfoService = PatientInfoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(patient_1.Patient.name)),
-    __metadata("design:paramtypes", [mongoose_2.default.Model])
+    __metadata("design:paramtypes", [mongoose_2.Model])
 ], PatientInfoService);
 //# sourceMappingURL=patient-info.service.js.map

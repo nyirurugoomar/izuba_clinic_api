@@ -12,14 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppointmentSchema = exports.Appointment = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const register_schema_1 = require("../../register/schemas/register.schema");
 let Appointment = class Appointment {
 };
 exports.Appointment = Appointment;
-__decorate([
-    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: () => register_schema_1.Register }] }),
-    __metadata("design:type", Array)
-], Appointment.prototype, "register", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
@@ -36,6 +31,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Date)
 ], Appointment.prototype, "date", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: 'Register' }),
+    __metadata("design:type", mongoose_2.default.Types.ObjectId)
+], Appointment.prototype, "register", void 0);
 exports.Appointment = Appointment = __decorate([
     (0, mongoose_1.Schema)({
         timestamps: true,

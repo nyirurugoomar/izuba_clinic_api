@@ -12,8 +12,6 @@ import { Register } from "../../register/schemas/register.schema";
 
 export class Appointment{
 
-    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: () => Register }] })
-     register: mongoose.Types.ObjectId[];
 
     @Prop()
     doctors:string
@@ -26,6 +24,9 @@ export class Appointment{
 
     @Prop()
     date:Date
+
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Register' }) // Reference to the Register model
+    register: mongoose.Types.ObjectId; 
 
 }
 

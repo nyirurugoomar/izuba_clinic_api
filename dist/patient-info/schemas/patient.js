@@ -12,12 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PatientSchema = exports.Patient = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const register_schema_1 = require("../../register/schemas/register.schema");
 let Patient = class Patient {
 };
 exports.Patient = Patient;
 __decorate([
-    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: () => register_schema_1.Register }] }),
+    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.Types.ObjectId, ref: 'Register' }] }),
     __metadata("design:type", Array)
 ], Patient.prototype, "register", void 0);
 __decorate([

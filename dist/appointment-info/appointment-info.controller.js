@@ -17,29 +17,36 @@ const common_1 = require("@nestjs/common");
 const appointment_info_service_1 = require("./appointment-info.service");
 const appointment_dto_1 = require("./dto/appointment.dto");
 const swagger_1 = require("@nestjs/swagger");
+const jwt_auth_guard_1 = require("../register/guards/jwt-auth.guard");
 let AppointmentInfoController = class AppointmentInfoController {
     constructor(appointmentService) {
         this.appointmentService = appointmentService;
     }
-    async appointment(register, dto) {
-        const data = { ...dto, register: [register] };
+    async appointment(req, dto) {
+        console.log('User from request:', req.user);
+        const registerId = req.user?.id;
+        if (!registerId) {
+            throw new Error('Register ID not found');
+        }
+        const data = { ...dto, register: [registerId] };
         return this.appointmentService.appointmentInfo(data);
     }
 };
 exports.AppointmentInfoController = AppointmentInfoController;
 __decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Post)(),
-    (0, swagger_1.ApiOperation)({ summary: 'Appointment' }),
+    (0, swagger_1.ApiOperation)({ summary: 'Create Appointment' }),
     (0, swagger_1.ApiResponse)({
         status: 200,
-        description: 'Appintment successfully',
-        isArray: true
+        description: 'Appointment created successfully',
+        isArray: true,
     }),
-    (0, swagger_1.ApiNotFoundResponse)({ description: 'Fail to make appointment' }),
-    __param(0, (0, common_1.Query)('register')),
+    (0, swagger_1.ApiNotFoundResponse)({ description: 'Failed to create appointment' }),
+    __param(0, (0, common_1.Request)()),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, appointment_dto_1.AppointmentDto]),
+    __metadata("design:paramtypes", [Object, appointment_dto_1.AppointmentDto]),
     __metadata("design:returntype", Promise)
 ], AppointmentInfoController.prototype, "appointment", null);
 exports.AppointmentInfoController = AppointmentInfoController = __decorate([

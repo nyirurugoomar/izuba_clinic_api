@@ -5,6 +5,6 @@ export declare class RegisterController {
     constructor(registerService: RegisterService);
     register(dto: RegisterDto): Promise<{
         message: string;
-        register: import("./schemas/register.schema").Register;
+        token: string;
     }>;
 }
