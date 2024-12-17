@@ -7,4 +7,5 @@ export declare class PatientInfoController {
         message: string;
         patient: import("./schemas/patient").Patient;
     }>;
+    getAllPatients(): Promise<import("./schemas/patient").Patient[]>;
 }

@@ -32,8 +32,8 @@ __decorate([
     __metadata("design:type", Date)
 ], Appointment.prototype, "date", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: 'Register' }),
-    __metadata("design:type", mongoose_2.default.Types.ObjectId)
+    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.Types.ObjectId, ref: 'Register' }] }),
+    __metadata("design:type", Array)
 ], Appointment.prototype, "register", void 0);
 exports.Appointment = Appointment = __decorate([
     (0, mongoose_1.Schema)({

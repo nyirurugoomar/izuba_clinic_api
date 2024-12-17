@@ -37,6 +37,18 @@ let PatientInfoService = class PatientInfoService {
             throw new Error(`Failed to save patient info: ${error.message}`);
         }
     }
+    async getAllPatients() {
+        try {
+            const patients = await this.patientModel
+                .find()
+                .populate('register', 'email fullname')
+                .exec();
+            return patients;
+        }
+        catch (error) {
+            throw new Error(`Failed to retrieve patients: ${error.message}`);
+        }
+    }
 };
 exports.PatientInfoService = PatientInfoService;
 exports.PatientInfoService = PatientInfoService = __decorate([

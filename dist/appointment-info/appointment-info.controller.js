@@ -25,11 +25,16 @@ let AppointmentInfoController = class AppointmentInfoController {
     async appointment(req, dto) {
         console.log('User from request:', req.user);
         const registerId = req.user?.id;
+        const registerEmail = req.user?.email;
+        const registerFullname = req.user?.fullname;
         if (!registerId) {
             throw new Error('Register ID not found');
         }
-        const data = { ...dto, register: [registerId] };
+        const data = { ...dto, register: [registerId, registerEmail, registerFullname] };
         return this.appointmentService.appointmentInfo(data);
+    }
+    async getAllAppointments() {
+        return this.appointmentService.getAllAppointments();
     }
 };
 exports.AppointmentInfoController = AppointmentInfoController;
@@ -49,6 +54,12 @@ __decorate([
     __metadata("design:paramtypes", [Object, appointment_dto_1.AppointmentDto]),
     __metadata("design:returntype", Promise)
 ], AppointmentInfoController.prototype, "appointment", null);
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppointmentInfoController.prototype, "getAllAppointments", null);
 exports.AppointmentInfoController = AppointmentInfoController = __decorate([
     (0, common_1.Controller)('appointment-info'),
     __metadata("design:paramtypes", [appointment_info_service_1.AppointmentInfoService])

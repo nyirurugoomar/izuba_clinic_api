@@ -5,6 +5,7 @@ import { IsDate, IsEmpty, IsOptional, IsString } from "class-validator";
 export class AppointmentDto{
 
 
+
     register: string[];
 
     @IsEmpty()

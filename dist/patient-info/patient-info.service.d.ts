@@ -8,4 +8,5 @@ export declare class PatientInfoService {
         message: string;
         patient: Patient;
     }>;
+    getAllPatients(): Promise<Patient[]>;
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 import { PatientInfoService } from './patient-info.service';
 import { PatientDto } from './dto/patient.dto';
 // import { JwtAuthGuard } from '../register/guard/jwt-auth.guard'; // Correct path to your guard
@@ -21,7 +21,7 @@ export class PatientInfoController {
   async patient(@Request() req: any, @Body() dto: PatientDto) {
     console.log('User from request:', req.user); // Log the user object to ensure it is populated correctly
     const registerId = req.user?.id
-    const registerEmail = req.user?.email
+    const registerEmail =  req.user?.email
     const registerFullname = req.user?.fullname
     if (!registerId) {
       throw new Error('Register ID not found'); // Ensure `req.user.id` exists
@@ -29,5 +29,10 @@ export class PatientInfoController {
   
     const data = { ...dto, register: [registerId,registerEmail,registerFullname] }; // Attach `registerId`
     return this.patientService.patientInfo(data);
+  }
+
+  @Get()
+  async getAllPatients() {
+    return this.patientService.getAllPatients();
   }
 }

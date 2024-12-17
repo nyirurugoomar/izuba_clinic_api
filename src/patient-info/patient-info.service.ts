@@ -29,4 +29,17 @@ export class PatientInfoService {
       throw new Error(`Failed to save patient info: ${error.message}`);
     }
   }
+
+  async getAllPatients(): Promise<Patient[]> {
+    try {
+      const patients = await this.patientModel
+        .find()
+        .populate('register', 'email fullname') // Populate `register` field
+        .exec();
+
+      return patients;
+    } catch (error) {
+      throw new Error(`Failed to retrieve patients: ${error.message}`);
+    }
+  }
 }

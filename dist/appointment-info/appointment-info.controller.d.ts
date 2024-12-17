@@ -7,4 +7,5 @@ export declare class AppointmentInfoController {
         message: string;
         appointment: import("./schemas/appointment").Appointment;
     }>;
+    getAllAppointments(): Promise<import("./schemas/appointment").Appointment[]>;
 }

@@ -33,6 +33,9 @@ let PatientInfoController = class PatientInfoController {
         const data = { ...dto, register: [registerId, registerEmail, registerFullname] };
         return this.patientService.patientInfo(data);
     }
+    async getAllPatients() {
+        return this.patientService.getAllPatients();
+    }
 };
 exports.PatientInfoController = PatientInfoController;
 __decorate([
@@ -51,6 +54,12 @@ __decorate([
     __metadata("design:paramtypes", [Object, patient_dto_1.PatientDto]),
     __metadata("design:returntype", Promise)
 ], PatientInfoController.prototype, "patient", null);
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], PatientInfoController.prototype, "getAllPatients", null);
 exports.PatientInfoController = PatientInfoController = __decorate([
     (0, common_1.Controller)('patient-info'),
     __metadata("design:paramtypes", [patient_info_service_1.PatientInfoService])

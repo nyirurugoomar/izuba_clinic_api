@@ -37,11 +37,23 @@ let AppointmentInfoService = class AppointmentInfoService {
             throw new Error(`Failed to save appointment information: ${error.message}`);
         }
     }
+    async getAllAppointments() {
+        try {
+            const appointments = await this.appointmentModel
+                .find()
+                .populate('register', 'email fullname')
+                .exec();
+            return appointments;
+        }
+        catch (error) {
+            throw new Error(`Failed to retrieve appointments: ${error.message}`);
+        }
+    }
 };
 exports.AppointmentInfoService = AppointmentInfoService;
 exports.AppointmentInfoService = AppointmentInfoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(appointment_1.Appointment.name)),
-    __metadata("design:paramtypes", [mongoose_2.default.Model])
+    __metadata("design:paramtypes", [mongoose_2.Model])
 ], AppointmentInfoService);
 //# sourceMappingURL=appointment-info.service.js.map

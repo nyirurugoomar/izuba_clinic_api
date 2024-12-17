@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 import { Register } from "../../register/schemas/register.schema";
 
 
@@ -25,8 +25,8 @@ export class Appointment{
     @Prop()
     date:Date
 
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Register' }) // Reference to the Register model
-    register: mongoose.Types.ObjectId; 
+    @Prop({ type: [{ type: Types.ObjectId, ref: 'Register' }] }) // Reference `Register` schema
+    register: Types.ObjectId[];
 
 }
 
