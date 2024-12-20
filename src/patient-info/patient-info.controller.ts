@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Request, UseGuards,Query } from '@nestjs/common';
 import { PatientInfoService } from './patient-info.service';
 import { PatientDto } from './dto/patient.dto';
 // import { JwtAuthGuard } from '../register/guard/jwt-auth.guard'; // Correct path to your guard
@@ -32,7 +32,10 @@ export class PatientInfoController {
   }
 
   @Get()
-  async getAllPatients() {
-    return this.patientService.getAllPatients();
+  async getAllPatients(
+    @Query('page') page: number,
+    @Query('limit') limit: number,
+  ) {
+    return this.patientService.getAllPatients(page, limit);
   }
 }

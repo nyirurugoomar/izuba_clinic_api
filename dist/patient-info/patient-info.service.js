@@ -37,13 +37,17 @@ let PatientInfoService = class PatientInfoService {
             throw new Error(`Failed to save patient info: ${error.message}`);
         }
     }
-    async getAllPatients() {
+    async getAllPatients(page, limit) {
         try {
+            const skip = (page - 1) * limit;
             const patients = await this.patientModel
                 .find()
                 .populate('register', 'email fullname')
+                .skip(skip)
+                .limit(limit)
                 .exec();
-            return patients;
+            const total = await this.patientModel.countDocuments();
+            return { patients, total };
         }
         catch (error) {
             throw new Error(`Failed to retrieve patients: ${error.message}`);

@@ -6,7 +6,7 @@ import mongoose, { Types } from "mongoose";
   })
   export class Patient {
     @Prop({ type: [{ type: Types.ObjectId, ref: 'Register' }] }) // Reference `Register` schema
-  register: Types.ObjectId[];
+    register: Types.ObjectId[];
   
     @Prop()
     fullName: string;

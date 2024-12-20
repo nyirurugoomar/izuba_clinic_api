@@ -8,5 +8,8 @@ export declare class PatientInfoService {
         message: string;
         patient: Patient;
     }>;
-    getAllPatients(): Promise<Patient[]>;
+    getAllPatients(page: number, limit: number): Promise<{
+        patients: Patient[];
+        total: number;
+    }>;
 }

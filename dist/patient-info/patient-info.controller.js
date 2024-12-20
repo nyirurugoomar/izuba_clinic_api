@@ -33,8 +33,8 @@ let PatientInfoController = class PatientInfoController {
         const data = { ...dto, register: [registerId, registerEmail, registerFullname] };
         return this.patientService.patientInfo(data);
     }
-    async getAllPatients() {
-        return this.patientService.getAllPatients();
+    async getAllPatients(page, limit) {
+        return this.patientService.getAllPatients(page, limit);
     }
 };
 exports.PatientInfoController = PatientInfoController;
@@ -56,8 +56,10 @@ __decorate([
 ], PatientInfoController.prototype, "patient", null);
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('limit')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", Promise)
 ], PatientInfoController.prototype, "getAllPatients", null);
 exports.PatientInfoController = PatientInfoController = __decorate([

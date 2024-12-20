@@ -7,5 +7,8 @@ export declare class PatientInfoController {
         message: string;
         patient: import("./schemas/patient").Patient;
     }>;
-    getAllPatients(): Promise<import("./schemas/patient").Patient[]>;
+    getAllPatients(page: number, limit: number): Promise<{
+        patients: import("./schemas/patient").Patient[];
+        total: number;
+    }>;
 }

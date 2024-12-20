@@ -30,14 +30,18 @@ export class PatientInfoService {
     }
   }
 
-  async getAllPatients(): Promise<Patient[]> {
+  async getAllPatients(page: number, limit: number): Promise<{patients: Patient[]; total: number}> {
     try {
+      const skip = (page - 1) * limit;
       const patients = await this.patientModel
         .find()
         .populate('register', 'email fullname') // Populate `register` field
+        .skip(skip)
+        .limit(limit)
         .exec();
+        const total = await this.patientModel.countDocuments();
 
-      return patients;
+        return { patients, total };
     } catch (error) {
       throw new Error(`Failed to retrieve patients: ${error.message}`);
     }
